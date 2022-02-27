@@ -3,6 +3,7 @@ import React from 'react'
 import { Froala } from './Froala'
 import { Quil } from './Quil'
 import { Draft } from './Draft'
+import { Rdw } from './Rdw'
 
 interface WysiwygTestProps {
 
@@ -16,6 +17,7 @@ export const WysiwygTest: React.FC<WysiwygTestProps> = ({}) => {
           <Froala />
           <Draft />
           <Quil />
+          <Rdw />
         </div>
       </div>
     );
