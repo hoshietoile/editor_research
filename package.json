@@ -1,0 +1,57 @@
+{
+  "name": "react_tsc",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@craco/craco": "^6.4.3",
+    "@draft-js-plugins/anchor": "^4.1.3",
+    "@draft-js-plugins/editor": "^4.1.2",
+    "@draft-js-plugins/emoji": "^4.6.0",
+    "@draft-js-plugins/inline-toolbar": "^4.1.2",
+    "@draft-js-plugins/linkify": "^4.2.0",
+    "@draft-js-plugins/mention": "^5.1.1",
+    "@testing-library/jest-dom": "^5.16.2",
+    "@testing-library/react": "^12.1.3",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/draft-js": "^0.11.9",
+    "@types/jest": "^27.4.0",
+    "@types/node": "^16.11.25",
+    "@types/react": "^17.0.39",
+    "@types/react-dom": "^17.0.11",
+    "autoprefixer": "9",
+    "draft-js": "^0.11.7",
+    "postcss": "7",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-froala-wysiwyg": "^4.0.9",
+    "react-quill": "^1.3.5",
+    "react-scripts": "5.0.0",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
+    "typescript": "^4.5.5",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

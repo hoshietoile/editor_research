@@ -1,0 +1,153 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App {
+  background-color: #282c34;
+  min-height: 100vh;
+  /* display: flex; */
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  display: flex;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.section {
+}
+
+#wysiwyg-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+#wysiwyg-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.test-link-class {
+  color: red;
+  background: pink;
+}
+.editor {
+  box-sizing: border-box;
+  border: 1px solid #666;
+  cursor: text;
+  padding: 16px;
+  border-radius: 8px;
+  /* margin-bottom: 2em; */
+  color: black;
+  /* box-shadow: inset 0px 1px 8px -3px #ababab; */
+  /* background: #fefefe; */
+  background: transparent;
+}
+
+.image__wrapper {
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  position: relative;
+}
+
+.image__remover {
+  display: inline-block;
+  content: "";
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  background-color: #181c24;
+  color: #666;
+  border-radius: 100%;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.editor img {
+}
+
+/* .editor img  */
+
+.editor__toolbar {
+  width: 100%;
+  border-top: 1px solid #666;
+  display: flex;
+}
+
+.editor__toolitem {
+  width: auto;
+  height: 100%;
+}
+
+.editor__button {
+  background: transparent;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 8px;
+  color: aqua;
+  /* border: 1px solid #fefefe; */
+}
+
+.editor__button:hover {
+  background-color: #181c24;
+}
+
+.editor__spacer {
+  margin-right: auto;
+}
+
+.editor :global(.public-DraftEditor-content) {
+  min-height: 140px;
+}
+
+.ejr02pv {
+  background-color: #282c34 !important;
+  width: 400px;
+}
+
+.e1kg9q3n {
+  width: auto !important;
+}
+
+.e1cibj9i {
+  width: auto !important;
+}
+
+.e6nwac2 {
+  width: 1.5em !important;
+  height: 1.5em !important;
+}
+
+.e8k2yoa,
+.e13wqaj6 {
+  width: 1.5em !important;
+  height: 1em !important;
+  line-height: 1em !important;
+  background-color: #282c34 !important;
+}
