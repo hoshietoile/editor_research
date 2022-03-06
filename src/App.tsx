@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import GenericComponent, { WithId, WithoutId } from './GenericComponent';
 import { WysiwygTest } from './WysiwygTest'
@@ -41,6 +41,13 @@ function App() {
   //   { id: '7', label: 'label7', value: '7', cb: cb7 },
   //   { id: '8', label: 'label8', value: '8', cb: cb8 },
   // ]
+  const [show, setShow ] = useState(false)
+  const showHeart = () => {
+    setShow(true)
+  }
+  const hideHeart = () => {
+    setShow(false)
+  }
   return (
     <div className="App">
       {/* <div className="section">
@@ -55,6 +62,17 @@ function App() {
         ))}
       </div> */}
       <WysiwygTest />
+      {/* <button onClick={showHeart}>ShowHeart</button>
+      <button onClick={hideHeart}>HideHeart</button>
+      {show && <div className="heart-icon-container">
+        <div className="heart-icon-impact3"></div>
+        <div className="heart-icon-impact2"></div>
+        <div className="heart-icon-wrap"></div>
+        <svg xmlns="http://www.w3.org/2000/svg" className="heart-icon" style={{color: 'pink', width: '100px', height: '100px'}} viewBox="0 0 20 20" fill="currentColor">
+        <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+      </svg>
+      </div>} */}
+
     </div>
   );
 }

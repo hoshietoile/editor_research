@@ -1,33 +1,15 @@
 import { Delta } from 'quill';
-import React, { useState } from 'react'
-import ReactQuill from 'react-quill';
+import React, { useEffect, useMemo, useRef, useState } from 'react'
+import ReactQuill, { Quill } from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-
+import MagicUrl from 'quill-magic-url'
 interface QuilProps {
 
 }
 
-// quill image upload custom
-// https://jpdebug.com/p/237288
-
-const ToolFooter = () => {
-  // const insertStar = () => {
-  //   const cursorPosition = 
-  // }
-  return (
-    <div id="footer">
-      <button className="send">send</button>
-    </div>
-  )
-}
-
-// const modules = [
-//   toolbar: {}
-// ]
-
 const CustomToolbar = () => (
   <div id="toolbar">
-    {/* <select className="ql-header" defaultValue={""} onChange={e => e.persist()}>
+    <select className="ql-header" defaultValue={""} onChange={e => e.persist()}>
       <option value="1" />
       <option value="2" />
       <option selected />
@@ -42,14 +24,18 @@ const CustomToolbar = () => (
       <option value="violet" />
       <option value="#d0d1d2" />
       <option selected />
-    </select> */}
+    </select>
+    <button className="ql-link" />
     <button className="ql-insertStar">
       <span className="octicon octicon-star" />
     </button>
   </div>
 );
 
+
 const Editor = () => {
+  Quill.register('modules/magicUrl', MagicUrl)
+  const quill = useRef(null);
   const [input, setInput] = useState('')
   const handleInput = (v: string, delta: Delta, source: string, a: any) => {
     console.log(delta)
@@ -58,58 +44,86 @@ const Editor = () => {
     console.log(v);
     setInput(v)
   }
+  // https://stackoverflow.com/questions/68742814/how-to-access-reactquill-api
+  // https://quilljs.com/docs/api/
+  useEffect(() => {
+    const q = quill.current as any;
+    q.editor.formatText(0, 10, 'link', 'http://hoge.com')
+  }, [])
 
-  const insertStar = () => {
-    setInput((old) => {
-      return old + '星'
-    })
+  const [selection, setSelection] = useState({index: 0, length: 0})
+  const [isOpen, setIsOpen] = useState(false)
+  const [linkVal, setLinkVal] = useState('')
+
+  const onInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLinkVal(e.target.value);
   }
 
-  const modules = {
-    // toolbar: [
-    //   // [{ 'header': [1, 2, false] }],
-    //   ['bold'],
-    //   // [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
-    //   ['link', 'image'],
-    // ],
-    toolbar: {
-      container: "#toolbar",
-      handlers: {
-        insertStart: insertStar
-      }
-    },
-    clipboard: {
-      matchVisual: false,
+  const linkValSet = () => {
+    const q = quill.current as any;
+    q.editor.formatText(selection.index, selection.length, 'link', linkVal)
+  }
+
+  const handleSelection = (a: any, b: any, c: any) => {
+    console.log(a)
+    console.log(b)
+    console.log(c)
+  }
+  const onFocus = (a: any,b: any,c: any) => {
+    console.log(a)
+    console.log(b)
+    console.log(c)
+  }
+
+  const modules = useMemo(() => {
+    return {
+      toolbar: {
+        container: "#toolbar",
+        handlers: {
+          // https://quilljs.com/docs/modules/toolbar/
+          'link': function(value: any) {
+            const q = quill.current as any;
+            const selection = q.editor.getSelection()
+            setSelection(selection)
+            setIsOpen(true)
+            // console.log('link', selection.index, selection.length)
+            // if (value) {
+            //   q.editor.formatText(selection.index, selection.length, 'link', 'hoge')
+            //   // l.format('link', href);
+            // } else {
+            //   // l.format('link', false);
+            // }
+          }
+        },
+        
+      },
+      magicUrl: {
+        // Regex used to check URLs during typing
+        urlRegularExpression: /(https?:\/\/[\S]+)|(www.[\S]+)|(tel:[\S]+)/g,
+        // Regex used to check URLs on paste
+        globalRegularExpression: /(https?:\/\/|www\.|tel:)[\S]+/g,
+      },
     }
-  }
+  }, [])
 
-  const formats = [
-    "header",
-  // "font",
-  // "size",
-  // "bold",
-  // "italic",
-  // "underline",
-  // "strike",
-  // "blockquote",
-  // "list",
-  // "bullet",
-  // "indent",
-  // "link",
-  // "image",
-  // "color",
-  ]
+  return (
+    <div className="editor">
 
-    return (
-      <div className="editor">
+      <ReactQuill ref={quill} value={input} onChange={handleInput}
+        modules={modules}
+        // formats={formats}
+        placeholder={'This is a placeholder'}
+        onChangeSelection={handleSelection}
+        onFocus={onFocus}
+      />
+      <CustomToolbar />
 
-        <ReactQuill value={input} onChange={handleInput}
-          // modules={modules}
-          // formats={formats}
-        />
-        {/* <CustomToolbar /> */}
-      </div>  
-    );
+      {isOpen && <>
+        <input type="text" value={linkVal} onChange={onInput} />
+        <button type="button" onClick={linkValSet}>Link</button>
+      </>}
+    </div>  
+  );
 }
 
 

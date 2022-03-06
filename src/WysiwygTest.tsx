@@ -14,10 +14,10 @@ export const WysiwygTest: React.FC<WysiwygTestProps> = ({}) => {
       <div id="wysiwyg-wrapper">
         <span>WysiwygTest</span>
         <div id="wysiwyg-container">
-          <Froala />
-          <Draft />
+          {/* <Froala />
+          <Draft /> */}
           <Quil />
-          <Rdw />
+          {/* <Rdw /> */}
         </div>
       </div>
     );
